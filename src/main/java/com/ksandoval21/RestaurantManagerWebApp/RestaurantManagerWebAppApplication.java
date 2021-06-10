@@ -18,5 +18,12 @@ public class RestaurantManagerWebAppApplication {
 			return "welcome";
 		}
 	}
+	@Controller
+	public class Management{
+		@GetMapping("/management")
+		public String management(){
+			return "management";
+		}
+	}
 
 }
