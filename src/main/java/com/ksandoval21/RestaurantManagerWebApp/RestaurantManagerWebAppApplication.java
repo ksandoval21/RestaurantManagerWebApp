@@ -25,5 +25,19 @@ public class RestaurantManagerWebAppApplication {
 			return "management";
 		}
 	}
+	@Controller
+	public class Employee{
+		@GetMapping("/employee")
+		public String employee(){
+			return "employee";
+		}
+	}@Controller
+	public class Customer{
+		@GetMapping("/customer")
+		public String customer(){
+			return "customer";
+		}
+	}
+
 
 }
