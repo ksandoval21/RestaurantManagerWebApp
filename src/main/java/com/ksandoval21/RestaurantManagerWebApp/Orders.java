@@ -1,20 +1,43 @@
 package com.ksandoval21.RestaurantManagerWebApp;
 
 import javax.persistence.*;
-
 import java.util.ArrayList;
-public class Orders {
-    int guest = 0;
-    int kids = 0;
-    int tableNumber = 0;
-    ArrayList drinks = new ArrayList<>() ;
 
-    public Orders ( int guestAmount, int kidsAmount, int table, ArrayList drinksName) {
-        guest= guestAmount;
-        kids = kidsAmount;
-        tableNumber = table;
-        drinks = drinksName;
+@Entity
+@Table(name = "Orders")
+public class Orders {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(name = "guest",nullable = false, length = 100)
+    private int guest;
+
+    @Column(name= "kids", nullable = false, length = 100)
+    private int kids;
+
+    @Column(name = "tableNumber", nullable = false, length = 100)
+    private int tableNumber;
+
+    @Column(name = "drinks", nullable = false, length = 100)
+    private ArrayList drinks;
+
+    public Long getId() {
+        return id;
     }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public int getGuest() {
+        return guest;
+    }
+
+    public void setGuest(int guest) {
+        this.guest = guest;
+    }
+
     public int getKids() {
         return kids;
     }
@@ -31,32 +54,15 @@ public class Orders {
         this.tableNumber = tableNumber;
     }
 
-    public ArrayList<String> getDrinks() {
+    public ArrayList getDrinks() {
         return drinks;
     }
 
-    public void setDrinks(ArrayList<String> drinks) {
+    public void setDrinks(ArrayList drinks) {
         this.drinks = drinks;
     }
 
-    public int getGuest() {
-        return guest;
-    }
+    public void setUserId(Long userId) {
 
-    public void setGuest(int guest) {
-        this.guest = guest;
-    }
-
-    public String toString() {
-        String str = """
-                Guest: %s
-                Kids: %s
-                Table: %s
-                Drinks: %s
-                """.formatted(guest, kids, tableNumber, drinks);
-        return str;
-    }
-
-    public Orders() {
     }
 }

@@ -1,0 +1,28 @@
+body {
+	background: url(https://images.unsplash.com/photo-1493606278519-11aa9f86e40a?ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fG1pbmltYWxpc3QlMjBmb29kfGVufDB8fDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60)
+	no-repeat fixed center center;
+	background-size: cover;
+}
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    box-sizing: border-box;
+    background: #A668A6;
+    z-index: 2;
+}
+nav ul {
+    list-style: none;
+    float: right;
+    display: flex;
+    margin: 0;
+    padding: 0;
+}
+nav ul li a {
+    color: #fff;
+    padding: 12px 30px;
+    text-decoration: none;
+    line-height: 60px;
+    font-size: 16px;
+}

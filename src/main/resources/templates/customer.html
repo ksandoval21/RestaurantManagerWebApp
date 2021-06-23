@@ -11,7 +11,33 @@
 </header>
 <div class="container">
   <h1 class="title">Customer</h1>
-
+  <div class="order-form">
+    <h2>Place an order</h2>
+    <form class="form" th:action="@{/order-success}" th:object="${orders}"
+          method="post">
+      <div class="form__group">
+        <p> Guest </p>
+        <input type="number" class="form__input" th:field="*{guest}"
+               required/>
+      </div>
+      <div class="form__group">
+        <p> Kids </p>
+        <input type="number" class="form__input" th:field="*{kids}"
+               required/>
+      </div>
+      <div class="form__group">
+        <p> Table Number </p>
+        <input type="number" class="form__input" th:field="*{tableNumber}"
+               required/>
+      </div>
+      <div class="form__group">
+        <p> Drinks </p>
+        <input type="text" class="form__input" th:field="*{drinks}"
+               required/>
+      </div>
+      <button type="submit" class="btn">Book</button>
+    </form>
+  </div>
 </div>
 </body>
 </html>

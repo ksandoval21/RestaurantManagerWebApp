@@ -31,11 +31,12 @@ public class RestaurantManagerWebAppApplication {
 		public String employee(){
 			return "employee";
 		}
-	}@Controller
-	public class Customer{
-		@GetMapping("/customer")
-		public String customer(){
-			return "customer";
+	}
+	@Controller
+	public class prices {
+		@GetMapping("/prices")
+		public String prices(){
+			return "prices";
 		}
 	}
 

@@ -1,17 +1,23 @@
 package com.ksandoval21.RestaurantManagerWebApp;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import java.util.List;
+
 @Controller
 public class AppController {
 
     @Autowired
     private UserRepository userRepo;
+
+    @Autowired
+    private OrderRepository orderRepo;
 
     @GetMapping("/register")
     public String signUpForm(Model model) {
@@ -29,5 +35,18 @@ public class AppController {
     @GetMapping("/users")
     public String loggedIn(Model model) {
         return "management";
+    }
+
+    @GetMapping("/order")
+    public String addOrder(Model model) {
+        model.addAttribute("orders", new Orders());
+        return "customer";
+    }
+    @PostMapping("/order-success")
+    public String processOrder(Orders orders, @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
+        orderRepo.save(orders);
+        List<Orders> orderList = orderRepo.findAll();
+        model.addAttribute("ordersList", orderList);
+        return "order_success";
     }
 }
