@@ -22,6 +22,7 @@ public class User {
     @Column(name = "last_name", nullable = false, length = 20)
     private String lastName;
 
+
     public Long getId() {
         return id;
     }

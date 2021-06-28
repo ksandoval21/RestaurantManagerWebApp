@@ -19,26 +19,10 @@ public class RestaurantManagerWebAppApplication {
 		}
 	}
 	@Controller
-	public class Management{
-		@GetMapping("/management")
-		public String management(){
-			return "management";
-		}
-	}
-	@Controller
-	public class Employee{
-		@GetMapping("/employee")
-		public String employee(){
-			return "employee";
-		}
-	}
-	@Controller
 	public class prices {
 		@GetMapping("/prices")
 		public String prices(){
 			return "prices";
 		}
 	}
-
-
 }

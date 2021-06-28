@@ -1,5 +1,6 @@
 package com.ksandoval21.RestaurantManagerWebApp;
 
+import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -19,6 +20,9 @@ public class AppController {
     @Autowired
     private OrderRepository orderRepo;
 
+    @Autowired
+    private PricesRepository priceRepo;
+
     @GetMapping("/register")
     public String signUpForm(Model model) {
         model.addAttribute("user", new User());
@@ -34,7 +38,7 @@ public class AppController {
     }
     @GetMapping("/users")
     public String loggedIn(Model model) {
-        return "management";
+        return "if_page";
     }
 
     @GetMapping("/order")
@@ -48,5 +52,17 @@ public class AppController {
         List<Orders> orderList = orderRepo.findAll();
         model.addAttribute("ordersList", orderList);
         return "order_success";
+    }
+    @GetMapping("/management")
+    public String listUser(Model model) {
+        List<User> listUsers = userRepo.findAll();
+        model.addAttribute("listUsers", listUsers);
+        return "management";
+    }
+    @GetMapping("/employee")
+    public String listUsers(Model model) {
+        List<Orders> orderList = orderRepo.findAll();
+        model.addAttribute("ordersList", orderList);
+        return "employee";
     }
 }

@@ -11,8 +11,9 @@
       <ul>
         <h3><a href="/">Restaurant Hut</a></h3>
         <li><a href="prices">View Prices</a></li>
-        <li><a href="login">Login</a></li>
-        <li><a href="register">Sign in</a></li>
+        <li sec:authorize="!isFullyAuthenticated()" ><a href="login">Login</a></li>
+        <li sec:authorize="!isFullyAuthenticated()" ><a href="register">Sign up</a></li>
+        <li th:if="${#authorization.expression('isAuthenticated()')}"> <a href="/logout" >Log out </a></li>
       </ul>
     </nav>
   </div>

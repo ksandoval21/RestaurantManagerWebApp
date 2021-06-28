@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/management.css}" />
+</head>
+<body>
+<header>
+    <div th:replace="~{nav :: nav}"></div>
+</header>
+<h1>Are you a manager or waiter?</h1>
+<div class="column">
+    <p class="views">Management</p>
+    <a href="management" class="button1">Click Here</a>
+</div>
+<div class="column">
+    <p class="views">Employees</p>
+    <a href="employee" class="button1">Click Here</a>
+</div>
+</body>
+</html>

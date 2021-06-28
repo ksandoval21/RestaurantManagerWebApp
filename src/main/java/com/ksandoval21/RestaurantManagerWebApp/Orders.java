@@ -1,7 +1,6 @@
 package com.ksandoval21.RestaurantManagerWebApp;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 
 @Entity
 @Table(name = "Orders")
@@ -20,7 +19,7 @@ public class Orders {
     private int tableNumber;
 
     @Column(name = "drinks", nullable = false, length = 100)
-    private ArrayList drinks;
+    private String drinks;
 
     public Long getId() {
         return id;
@@ -54,11 +53,11 @@ public class Orders {
         this.tableNumber = tableNumber;
     }
 
-    public ArrayList getDrinks() {
+    public String getDrinks() {
         return drinks;
     }
 
-    public void setDrinks(ArrayList drinks) {
+    public void setDrinks(String drinks) {
         this.drinks = drinks;
     }
 
