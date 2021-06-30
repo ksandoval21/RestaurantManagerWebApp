@@ -9,22 +9,22 @@
 <header>
     <div th:replace="~{nav :: nav}"></div>
 </header>
-<div class="container text-center" style="max-width: 1000px; margin: 0 auto; padding-top: 200px;">
+<div class="container form-signup" >
     <div>
-        <h1 style="padding:5px;">Employee Sign Up</h1>
+        <h1 >Employee Sign Up</h1>
     </div>
     <form th:action="@{/process_register}" th:object="${user}"
           method="post">
         <div>
             <div>
-                <label style="padding:5px;">E-mail: </label>
+                <label >E-mail: </label>
                 <div>
                     <input type="email" th:field="*{email}" required />
                 </div>
             </div>
 
             <div >
-                <label style="padding:5px;">Password: </label>
+                <label >Password: </label>
                 <div >
                     <input type="password" th:field="*{password}" class="form-control"
                            required minlength="6" maxlength="10"/>
@@ -32,7 +32,7 @@
             </div>
 
             <div >
-                <label style="padding:5px;">First Name: </label>
+                <label >First Name: </label>
                 <div >
                     <input type="text" th:field="*{firstName}" class="form-control"
                            required minlength="2" maxlength="20"/>
@@ -40,7 +40,7 @@
             </div>
 
             <div >
-                <label style="padding:5px;">Last Name: </label>
+                <label >Last Name: </label>
                 <div >
                     <input type="text" th:field="*{lastName}" class="form-control"
                            required minlength="2" maxlength="20" />

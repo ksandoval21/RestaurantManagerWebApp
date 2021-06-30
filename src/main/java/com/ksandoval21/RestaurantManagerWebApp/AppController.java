@@ -1,15 +1,17 @@
 package com.ksandoval21.RestaurantManagerWebApp;
 
-import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class AppController {
@@ -49,20 +51,39 @@ public class AppController {
     @PostMapping("/order-success")
     public String processOrder(Orders orders, @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
         orderRepo.save(orders);
-        List<Orders> orderList = orderRepo.findAll();
+        List<Orders> orderList = (List<Orders>) orderRepo.findAll();
         model.addAttribute("ordersList", orderList);
         return "order_success";
     }
     @GetMapping("/management")
     public String listUser(Model model) {
-        List<User> listUsers = userRepo.findAll();
+        List<User> listUsers = (List<User>) userRepo.findAll();
         model.addAttribute("listUsers", listUsers);
         return "management";
     }
     @GetMapping("/employee")
     public String listUsers(Model model) {
-        List<Orders> orderList = orderRepo.findAll();
+        List<Orders> orderList = (List<Orders>) orderRepo.findAll();
         model.addAttribute("ordersList", orderList);
         return "employee";
+    }
+    @GetMapping("/edit/{id}")
+    public ModelAndView editOrder(@PathVariable(name ="id")Long id) {
+        ModelAndView mav =  new ModelAndView("edit_order");
+        Optional<Orders> orders = orderRepo.findById(id);
+        mav.addObject("orders",orders);
+        return mav;
+    }
+    @PostMapping("/order_info")
+    public String order_info(Orders newOrder){
+        Optional<Orders> oldOrder = orderRepo.findById(newOrder.getId());
+        if (oldOrder != null) {
+            oldOrder.get().setDrinks(newOrder.getDrinks());
+            oldOrder.get().setGuest(newOrder.getGuest());
+            oldOrder.get().setKids(newOrder.getKids());
+            oldOrder.get().setTableNumber(newOrder.getTableNumber());
+            orderRepo.save(oldOrder.get());
+        }
+        return "redirect:/employee";
     }
 }

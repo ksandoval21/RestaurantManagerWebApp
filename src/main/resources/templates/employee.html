@@ -15,24 +15,29 @@
     <table class="table table-striped table-bordered">
         <thead class="thead-dark">
         <tr>
+            <th>Order Number</th>
             <th>Table Number</th>
             <th>Guest</th>
             <th>Kids</th>
             <th>Drinks </th>
+            <th></th>
         </tr>
         </thead>
         <tbody>
         <tr th:each="orders: ${ordersList}">
+            <td th:text="${orders.id}">Order Number</td>
             <td th:text="${orders.tableNumber}">Table Number</td>
             <td th:text="${orders.guest}">Guest</td>
             <td th:text="${orders.kids}">Kids</td>
             <td th:text="${orders.drinks}">Drinks</td>
+            <td><a th:href="@{'/edit/' + ${orders.id}}">Edit</a>
+                <a th:href="@{'/delete/' + ${orders.id}}">Delete</a></td>
         </tr>
         </tbody>
     </table>
 </div>
 <div class="container" sec:authorize="!isFullyAuthenticated()">
-    <h1 class="log-in">Please log in </h1>
+    <h1 class="log-in">Restricted Access, Please log in </h1>
 </div>
 </body>
 </html>
