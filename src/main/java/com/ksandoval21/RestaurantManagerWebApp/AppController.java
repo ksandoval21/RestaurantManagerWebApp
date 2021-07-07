@@ -86,4 +86,49 @@ public class AppController {
         }
         return "redirect:/employee";
     }
+
+    @GetMapping("/order_delete/{id}")
+    public String order_delete(@PathVariable(name ="id")Long id, Orders orders){
+        Optional<Orders> oldOrder = orderRepo.findById(orders.getId());
+        oldOrder.ifPresent(value -> orderRepo.delete(oldOrder.get()));
+        return "redirect:/employee";
+    }
+    @GetMapping("/view/{id}")
+    public ModelAndView viewOrder(@PathVariable(name ="id")Long id) {
+        ModelAndView mav =  new ModelAndView("specific-order-form");
+        Optional<Orders> orders = orderRepo.findById(id);
+        mav.addObject("orders",orders);
+        return mav;
+    }
+    @PostMapping("/order/{id}")
+    public String orderView(@PathVariable(name ="id")Long id, Orders orders, Model model,CustomUserDetails userDetails) {
+        Optional<Orders> order = orderRepo.findById(orders.getId());
+        order.ifPresent(value -> model.addAttribute("order", value));
+        return "order_info";
+    }
+    @GetMapping("/priceslist")
+    public String priceList(Model model) {
+        List<Prices> priceList = (List<Prices>) priceRepo.findAll();
+        model.addAttribute("priceList", priceList);
+        return "pricelist";
+    }
+    @GetMapping("/pin/{id}")
+    public ModelAndView editPrice(@PathVariable(name ="id")Long id) {
+        ModelAndView mav =  new ModelAndView("prices-form");
+        Optional<Prices> prices = priceRepo.findById(id);
+        mav.addObject("prices", prices);
+        return mav;
+    }
+    @PostMapping("/price_info")
+    public String price_info(Prices newPrice){
+        Optional<Prices> oldOrder = priceRepo.findById(newPrice.getId());
+        if (oldOrder != null) {
+            oldOrder.get().setGuest(newPrice.getGuest());
+            oldOrder.get().setChild(newPrice.getChild());
+            oldOrder.get().setDrink(newPrice.getDrink());
+            priceRepo.save(oldOrder.get());
+        }
+        return "redirect:/priceslist";
+    }
+
 }

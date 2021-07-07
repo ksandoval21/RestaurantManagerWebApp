@@ -20,7 +20,7 @@
             <th>Guest</th>
             <th>Kids</th>
             <th>Drinks </th>
-            <th></th>
+            <th>Adjust</th>
         </tr>
         </thead>
         <tbody>
@@ -31,7 +31,7 @@
             <td th:text="${orders.kids}">Kids</td>
             <td th:text="${orders.drinks}">Drinks</td>
             <td><a th:href="@{'/edit/' + ${orders.id}}">Edit</a>
-                <a th:href="@{'/delete/' + ${orders.id}}">Delete</a></td>
+                <a th:href="@{'/order_delete/'+ ${orders.id}}">Delete</a></td>
         </tr>
         </tbody>
     </table>

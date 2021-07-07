@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <link rel="stylesheet" th:href="@{/management.css}" />
+</head>
+<body>
+<header>
+  <div th:replace="~{nav :: nav}"></div>
+</header>
+<div class="container">
+  <h1 class="title" >Prices </h1>
+<table class="table table-striped table-bordered">
+  <thead class="thead-dark">
+  <tr>
+    <th>Guest</th>
+    <th>Kids</th>
+    <th>Drinks </th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="prices: ${priceList}">
+    <td th:text="${prices.guest}">Guest</td>
+    <td th:text="${prices.child}">Kids</td>
+    <td th:text="${prices.drink}">Drinks</td>
+    <a th:href="@{'/pin/'+ ${prices.id}}">Change Prices</a>
+  </tr>
+  </tbody>
+</table>
+</div>
+</body>
+</html>

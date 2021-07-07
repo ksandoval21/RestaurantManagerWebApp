@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" th:href="@{/management.css}" />
+</head>
+<body>
+<header>
+    <div th:replace="~{nav :: nav}"></div>
+</header>
+<div class="container ">
+    <h1 class="title" >Update Price</h1>
+    <div class="order-form">
+<form class="form" th:action="@{/price_info}" th:object="${prices}"
+      method="post">
+    <input type="hidden" th:field="*{id}" />
+    <div class="form__group">
+        <p>Adult</p>
+        <input type="number" class="form__input" th:field="*{guest}"
+               required/>
+    </div>
+    <div class="form__group">
+        <p> Kids</p>
+        <input type="number" class="form__input" th:field="*{child}"
+               required/>
+    </div>
+    <div class="form__group">
+        <p> Drinks </p>
+        <input type="text" class="form__input" th:field="*{drink}"
+               required/>
+    </div>
+    <button type="submit" class="btn">Book</button>
+</form>
+    </div>
+</div>
+</body>
+</html>

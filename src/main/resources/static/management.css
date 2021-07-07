@@ -48,25 +48,6 @@ font-size: 50px;
   width: 20%;
   margin: auto;
 }
-table{
-    margin-left: auto;
-    margin-right: auto;
-
-}
-th {
-  vertical-align: middle;
-  text-align: center;
-  background-color: #2c3e50;
-  color: #fff;
-  height: 50px;
-  padding: 15px;
-
-}
-
-tr {
-  min-height: 60px;
-  padding: 10px;
-}
 .list{
 text-align: center;
 }
@@ -108,8 +89,55 @@ a.button1:hover{
 color:#000000;
 background-color:#FFFFFF;
 }
-@media all and (max-width:30em){
-a.button1{
-display:block;
-margin:0.4em auto;
+
+table {
+	width: 800px;
+	border-collapse: collapse;
+	overflow: hidden;
+	box-shadow: 0 0 20px #C4C4C4 ;
+	position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
+
+th,
+td {
+	padding: 15px;
+	background-color: #AE9EFF  ;
+	color: #fff;
+}
+
+th {
+	text-align: left;
+}
+
+thead {
+	th {
+		background-color: #55608f;
+	}
+}
+
+tbody {
+	tr {
+		&:hover {
+			background-color: rgba(255,255,255,0.3);
+		}
+	}
+	td {
+		position: relative;
+		&:hover {
+			&:before {
+				content: "";
+				position: absolute;
+				left: 0;
+				right: 0;
+				top: -9999px;
+				bottom: -9999px;
+				background-color: rgba(255,255,255,0.2);
+				z-index: -1;
+			}
+		}
+	}
+}
+

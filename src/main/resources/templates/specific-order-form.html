@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1> View your Specific Order</h1>
+<form th:action="@{/order_info}" th:object="${orders}" method="post">
+    <input type="number" th:field="*{id}" />
+    <button type="submit" class="btn">LOOK UP</button>
+</form>
+</body>
+</html>

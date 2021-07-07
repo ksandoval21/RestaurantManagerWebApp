@@ -7,47 +7,47 @@ import javax.persistence.*;
 @Table(name = "Prices")
 public class Prices {
     @Id
-    @Column(nullable = false, unique = true, length = 4)
-    private int pin;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(nullable = false, length = 11)
-    private int guest;
+    private double guest;
 
     @Column( nullable = false, length = 11)
-    private int child;
+    private double child;
 
     @Column (nullable = false, length = 11)
-    private int drink;
+    private double drink;
 
-    public int getPin() {
-        return pin;
+    public Long getId() {
+        return id;
     }
 
-    public void setPin(int pin) {
-        this.pin = pin;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public int getGuest() {
+    public double getGuest() {
         return guest;
     }
 
-    public void setGuest(int guest) {
+    public void setGuest(double guest) {
         this.guest = guest;
     }
 
-    public int getChild() {
+    public double getChild() {
         return child;
     }
 
-    public void setChild(int child) {
+    public void setChild(double child) {
         this.child = child;
     }
 
-    public int getDrink() {
+    public double getDrink() {
         return drink;
     }
 
-    public void setDrink(int drink) {
+    public void setDrink(double drink) {
         this.drink = drink;
     }
 }
