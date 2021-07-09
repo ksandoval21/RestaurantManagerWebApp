@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+  <link rel="stylesheet" th:href="@{/thank_you.css}" />
+</head>
+<body>
+<header>
+  <div th:replace="~{nav :: nav}"></div>
+</header>
+<div class="container">
+  <div align="center">
+<h1 class="title">Menu</h1>
+  <h3 class="item" th:text="'Adult Price: $'+ ${prices.guest}">Adult</h3>
+  <h3 class="item" th:text="'Child Price: $'+ ${prices.child}">Child</h3>
+  <h3 class="item" th:text="'Drink Price: $'+ ${prices.drink}">Drink</h3>
+  </div>
+  <div class="row">
+    <div class="column">
+      <div class="heading">
+      <h3 align="center">Starters</h3>
+      <p align="center">2 servings per person </p>
+      <p align="center">1 serving per child </p>
+      </div>
+      <ul>
+        <li>Salad</li>
+        <li>Soup</li>
+        <li>Mozzarella sticks</li>
+      </ul>
+    </div>
+    <div class="column">
+      <div class="heading">
+      <h3 align="center"> Main Course</h3>
+      <p align="center">1 serving per adult and child </p>
+      </div>
+      <ul>
+        <li>Pasta</li>
+        <li>Chicken and Rice</li>
+        <li>Pizza</li>
+      </ul>
+    </div>
+    <div class="column">
+      <div class="heading">
+      <h3 align="center">Desserts</h3>
+      <p align="center">1 serving per adult and child </p>
+      </div>
+      <ul>
+        <li>Cake</li>
+        <li>Flan</li>
+      </ul>
+    </div>
+    <div class="column">
+      <div class="heading">
+      <h3 align="center">Drinks</h3>
+      <p align="center">1 serving per adult and child </p>
+      </div>
+      <ul>
+        <li>Fountain Drinks</li>
+        <li>Horchata</li>
+      </ul>
+    </div>
+  </div>
+  <a class="button1" href="/order">Start Order</a>
+</div>
+</body>
+</html>

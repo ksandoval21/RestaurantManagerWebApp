@@ -10,10 +10,9 @@
     <div th:replace="~{nav :: nav}"></div>
 </header>
 <div class="items">
-<h1 class="item">Adult Price: $10.50</h1>
-<h1 class="item">Child Price: $5.00</h1>
-<h1 class="item">Drink Price: $2.50</h1>
-
+    <h1 class="item" th:text="'Adult Price: $'+ ${prices.guest}">Adult</h1>
+    <h1 class="item" th:text="'Child Price: $'+ ${prices.child}">Child</h1>
+    <h1 class="item" th:text="'Drink Price: $'+ ${prices.drink}">Drink</h1>
 </div>
 </body>
 </html>

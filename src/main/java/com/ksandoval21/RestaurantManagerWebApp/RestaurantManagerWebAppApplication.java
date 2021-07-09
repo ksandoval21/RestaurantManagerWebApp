@@ -18,11 +18,4 @@ public class RestaurantManagerWebAppApplication {
 			return "welcome";
 		}
 	}
-	@Controller
-	public class prices {
-		@GetMapping("/prices")
-		public String prices(){
-			return "prices";
-		}
-	}
 }

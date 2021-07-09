@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="utf-8" />
+  <title>Edit Order</title>
+  <link rel="stylesheet" th:href="@{/management.css}" />
+</head>
+<body>
+<header>
+  <div th:replace="~{nav :: nav}"></div>
+</header>
+<div align="center" class="container">
+  <h1>Edit Order</h1>
+  <br />
+  <form th:action="@{/order_update}" th:object="${orders}"
+        method="post">
+    <input type="hidden" th:field="*{id}" />
+    <div class="form__group">
+      <p> Guest </p>
+      <input type="number" class="form__input" th:field="*{guest}"
+             required/>
+    </div>
+    <div class="form__group">
+      <p> Kids </p>
+      <input type="number" class="form__input" th:field="*{kids}"
+             required/>
+    </div>
+    <div class="form__group">
+      <p> Table Number </p>
+      <input type="number" class="form__input" th:field="*{tableNumber}"
+             required/>
+    </div>
+    <div class="form__group">
+      <p> Drinks </p>
+      <input type="number" class="form__input" th:field="*{drinks}"
+             required/>
+    </div>
+    <button type="submit" class="btn">Order</button>
+  </form>
+</div>
+</body>
+</html>

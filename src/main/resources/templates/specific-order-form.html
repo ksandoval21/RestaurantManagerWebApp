@@ -2,13 +2,22 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Find Order</title>
+    <link rel="stylesheet" th:href="@{/management.css}" />
 </head>
 <body>
-<h1> View your Specific Order</h1>
-<form th:action="@{/order_info}" th:object="${orders}" method="post">
-    <input type="number" th:field="*{id}" />
+<header>
+    <div th:replace="~{nav :: nav}"></div>
+</header>
+<div class="container">
+<h1 class="title"> View your Specific Order</h1>
+    <div class="order-form">
+<form th:action="@{/show-order}" method="GET" >
+    <h3>Enter Table Number</h3>
+    <input type="number" name="tableNumber" />
     <button type="submit" class="btn">LOOK UP</button>
 </form>
+    </div>
+</div>
 </body>
 </html>

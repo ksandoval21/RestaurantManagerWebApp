@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Prices</title>
   <link rel="stylesheet" th:href="@{/management.css}" />
 </head>
 <body>
@@ -24,7 +24,7 @@
     <td th:text="${prices.guest}">Guest</td>
     <td th:text="${prices.child}">Kids</td>
     <td th:text="${prices.drink}">Drinks</td>
-    <a th:href="@{'/pin/'+ ${prices.id}}">Change Prices</a>
+    <a th:href="@{'/pin/'+ ${prices.id}}" class="button2">Change Prices</a>
   </tr>
   </tbody>
 </table>

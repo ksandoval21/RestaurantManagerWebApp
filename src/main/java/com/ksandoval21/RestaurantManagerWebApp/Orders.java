@@ -19,7 +19,7 @@ public class Orders {
     private int tableNumber;
 
     @Column(name = "drinks", nullable = false, length = 100)
-    private String drinks;
+    private int drinks;
 
     public Long getId() {
         return id;
@@ -53,15 +53,19 @@ public class Orders {
         this.tableNumber = tableNumber;
     }
 
-    public String getDrinks() {
+    public int getDrinks() {
         return drinks;
     }
 
-    public void setDrinks(String drinks) {
+    public void setDrinks(int drinks) {
         this.drinks = drinks;
     }
 
     public void setUserId(Long userId) {
 
+    }
+
+    public double getGuestPrice(Prices prices) {
+        return getGuest() * prices.getGuest();
     }
 }

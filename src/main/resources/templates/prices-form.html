@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Prices</title>
     <link rel="stylesheet" th:href="@{/management.css}" />
 </head>
 <body>
@@ -27,10 +27,10 @@
     </div>
     <div class="form__group">
         <p> Drinks </p>
-        <input type="text" class="form__input" th:field="*{drink}"
+        <input type="number" class="form__input" th:field="*{drink}"
                required/>
     </div>
-    <button type="submit" class="btn">Book</button>
+    <button type="submit" class="btn">Update</button>
 </form>
     </div>
 </div>
