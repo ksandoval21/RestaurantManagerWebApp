@@ -26,12 +26,14 @@ public class AppController {
 
     @Autowired
     private PricesRepository priceRepo;
+
     //user sign up
     @GetMapping("/register")
     public String signUpForm(Model model) {
         model.addAttribute("user", new User());
         return "signup_form";
     }
+    // Encryps password after account created
     @PostMapping("/process_register")
     public String processRegister(User user) {
         BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
@@ -51,6 +53,7 @@ public class AppController {
         model.addAttribute("orders", new Orders());
         return "customer";
     }
+
     @PostMapping("/order-success")
     public String processOrder(Orders orders, @AuthenticationPrincipal CustomUserDetails userDetails, Model model) {
         orderRepo.save(orders);
@@ -60,6 +63,7 @@ public class AppController {
         model.addAttribute("prices", prices.get());
         return "order_success";
     }
+
     //list of users
     @GetMapping("/management")
     public String listUser(Model model) {
@@ -67,6 +71,7 @@ public class AppController {
         model.addAttribute("listUsers", listUsers);
         return "management";
     }
+
     // list of orders
     @GetMapping("/employee")
     public String listUsers(Model model) {
@@ -74,16 +79,18 @@ public class AppController {
         model.addAttribute("ordersList", orderList);
         return "employee";
     }
+
     //edit orders
     @GetMapping("/edit/{id}")
-    public ModelAndView editOrder(@PathVariable(name ="id")Long id) {
-        ModelAndView mav =  new ModelAndView("edit_order");
+    public ModelAndView editOrder(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("edit_order");
         Optional<Orders> orders = orderRepo.findById(id);
-        mav.addObject("orders",orders);
+        mav.addObject("orders", orders);
         return mav;
     }
+
     @PostMapping("/order_info")
-    public String order_info(Orders newOrder){
+    public String order_info(Orders newOrder) {
         Optional<Orders> oldOrder = orderRepo.findById(newOrder.getId());
         if (oldOrder != null) {
             oldOrder.get().setDrinks(newOrder.getDrinks());
@@ -94,15 +101,17 @@ public class AppController {
         }
         return "redirect:/employee";
     }
+
     @GetMapping("/update/{id}")
-    public ModelAndView updateOrder(@PathVariable(name ="id")Long id) {
-        ModelAndView mav =  new ModelAndView("update_order");
+    public ModelAndView updateOrder(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("update_order");
         Optional<Orders> orders = orderRepo.findById(id);
-        mav.addObject("orders",orders);
+        mav.addObject("orders", orders);
         return mav;
     }
+
     @PostMapping("/order_update")
-    public String update_info(Orders newOrder){
+    public String update_info(Orders newOrder) {
         Optional<Orders> oldOrder = orderRepo.findById(newOrder.getId());
         if (oldOrder != null) {
             oldOrder.get().setDrinks(newOrder.getDrinks());
@@ -113,22 +122,27 @@ public class AppController {
         }
         return "redirect:/find-order";
     }
+
     // delete order
     @GetMapping("/order_delete/{id}")
-    public String order_delete(@PathVariable(name ="id")Long id, Orders orders){
+    public String order_delete(@PathVariable(name = "id") Long id, Orders orders) {
         Optional<Orders> oldOrder = orderRepo.findById(orders.getId());
         oldOrder.ifPresent(value -> orderRepo.delete(oldOrder.get()));
         return "redirect:/employee";
     }
+
     @GetMapping("/pay/{id}")
-    public String payOrder(@PathVariable(name ="id")Long id, Orders orders){
+    public String payOrder(@PathVariable(name = "id") Long id, Orders orders) {
         Optional<Orders> oldOrder = orderRepo.findById(orders.getId());
         oldOrder.ifPresent(value -> orderRepo.delete(oldOrder.get()));
         return "thank-you";
     }
+
     //view specific
     @GetMapping("/find-order")
-    public String viewSpecificOrder() { return "specific-order-form"; }
+    public String viewSpecificOrder() {
+        return "specific-order-form";
+    }
 
     @GetMapping("/show-order")
     public String orderView(@RequestParam int tableNumber, Model model, CustomUserDetails userDetails) {
@@ -138,28 +152,32 @@ public class AppController {
         model.addAttribute("prices", prices.get());
         return "order_info";
     }
+
     @GetMapping("/menu")
-    public String prices( Model model) {
+    public String prices(Model model) {
         Optional<Prices> prices = priceRepo.findById(1L);
         model.addAttribute("prices", prices.get());
         return "menu";
     }
-    //update price
+
+    //price list
     @GetMapping("/priceslist")
     public String priceList(Model model) {
         List<Prices> priceList = (List<Prices>) priceRepo.findAll();
         model.addAttribute("priceList", priceList);
         return "pricelist";
     }
+    // Pin to edit prices
     @GetMapping("/pin/{id}")
-    public ModelAndView editPrice(@PathVariable(name ="id")Long id) {
-        ModelAndView mav =  new ModelAndView("prices-form");
+    public ModelAndView editPrice(@PathVariable(name = "id") Long id) {
+        ModelAndView mav = new ModelAndView("prices-form");
         Optional<Prices> prices = priceRepo.findById(id);
         mav.addObject("prices", prices);
         return mav;
     }
+    // edit prices
     @PostMapping("/price_info")
-    public String price_info(Prices newPrice){
+    public String price_info(Prices newPrice) {
         Optional<Prices> oldOrder = priceRepo.findById(newPrice.getId());
         if (oldOrder != null) {
             oldOrder.get().setGuest(newPrice.getGuest());

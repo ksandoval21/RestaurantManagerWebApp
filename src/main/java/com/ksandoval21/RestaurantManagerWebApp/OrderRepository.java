@@ -9,9 +9,8 @@ import java.util.Optional;
 
 @Repository
 @EnableJpaRepositories
-public interface OrderRepository extends CrudRepository<Orders, Long>{
+public interface OrderRepository extends CrudRepository<Orders, Long> {
     @Query("SELECT g FROM Orders g WHERE g.id = ?1")
     public Optional<Orders> findById(Long id);
-
     public Optional<Orders> findByTableNumber(int tableNumber);
 }

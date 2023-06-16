@@ -64,8 +64,8 @@ public class Orders {
     public void setUserId(Long userId) {
 
     }
-
     public double getGuestPrice(Prices prices) {
         return getGuest() * prices.getGuest();
     }
 }
+
